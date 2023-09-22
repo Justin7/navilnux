@@ -25,6 +25,16 @@ sem_v:
 	swi SYS_SEMV
 	mov pc,lr
 
+.global mutex_wait
+mutex_wait:
+	swi SYS_MUTEXWAIT
+	mov pc,lr
+
+.global mutex_release
+mutex_release:
+	swi SYS_MUTEXREL
+	mov pc,lr
+
 .global navilnux_malloc
 navilnux_malloc:
 	swi SYS_MALLOC
@@ -33,6 +43,26 @@ navilnux_malloc:
 .global navilnux_free
 navilnux_free:
 	swi SYS_FREE
+	mov pc,lr
+
+.global open
+open:
+	swi SYS_OPEN
+	mov pc,lr
+
+.global close
+close:
+	swi SYS_CLOSE
+	mov pc,lr
+
+.global read
+read:
+	swi SYS_READ
+	mov pc,lr
+
+.global write
+write:
+	swi SYS_WRITE
 	mov pc,lr
 
 .global call_scheduler

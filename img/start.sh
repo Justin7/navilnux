@@ -43,4 +43,5 @@ dd of=navilnuximg bs=1k conv=notrunc if=flash.bin
 dd of=navilnuximg bs=1k conv=notrunc seek=180 if=navilnux.jffs2
 
 #에뮬레이터 실행
-qemu-system-arm -machine connex -pflash navilnuximg -nographic
+#qemu-system-arm -machine connex -pflash navilnuximg -nographic
+qemu-system-arm -s -machine connex -pflash navilnuximg -nographic

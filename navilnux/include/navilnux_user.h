@@ -7,5 +7,7 @@ void user_task_3(void);
 void user_task_4(void);
 void user_task_5(void);
 void user_task_6(void);
+void user_task_7(void);
+void user_task_8(void);
 
 #endif

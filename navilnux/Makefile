@@ -6,13 +6,14 @@ CFLAGS    = -nostdinc -I. -I./include
 CFLAGS   += -Wall -Wstrict-prototypes -Wno-trigraphs -O0
 CFLAGS   += -fno-strict-aliasing -fno-common -pipe -mapcs-32 
 CFLAGS   += -mcpu=xscale -mshort-load-bytes -msoft-float -fno-builtin
+CFLAGS	 += -g
 
 LDFLAGS   = -static -nostdlib -nostartfiles -nodefaultlibs -p -X -T ./main-ld-script
                 
 OCFLAGS = -O binary -R .note -R .comment -S
 
-CFILES = entry.S navilnux.c navilnux_memory.c navilnux_task.c navilnux_user.c navilnux_lib.S  navilnux_clib.c navilnux_sys.c navilnux_msg.c
-HFILES = include/navilnux.h include/navilnux_memory.h include/navilnux_task.h include/navilnux_user.h include/navilnux_lib.h include/navilnux_sys.h include/syscalltbl.h include/navilnux_msg.h
+CFILES = entry.S navilnux.c navilnux_memory.c navilnux_task.c navilnux_user.c navilnux_lib.S  navilnux_clib.c navilnux_sys.c navilnux_msg.c navilnux_drv.c my_drv.c
+HFILES = include/navilnux.h include/navilnux_memory.h include/navilnux_task.h include/navilnux_user.h include/navilnux_lib.h include/navilnux_sys.h include/syscalltbl.h include/navilnux_msg.h include/navilnux_drv.h
 
 all: $(CFILES) $(HFILES)
 	$(CC) -c $(CFLAGS) -o entry.o entry.S
@@ -31,10 +32,12 @@ all: $(CFILES) $(HFILES)
 	$(CC) -c $(CFLAGS) -o navilnux_clib.o navilnux_clib.c 
 	$(CC) -c $(CFLAGS) -o navilnux_sys.o navilnux_sys.c
 	$(CC) -c $(CFLAGS) -o navilnux_msg.o navilnux_msg.c
-	$(LD) $(LDFLAGS) -o navilnux_elf entry.o gpio.o time.o vsprintf.o printf.o string.o serial.o lib1funcs.o navilnux.o navilnux_memory.o navilnux_task.o navilnux_msg.o navilnux_sys.o navilnux_lib.o navilnux_clib.o navilnux_user.o
+	$(CC) -c $(CFLAGS) -o navilnux_drv.o navilnux_drv.c
+	$(CC) -c $(CFLAGS) -o drvs.o my_drv.c
+	$(LD) $(LDFLAGS) -o navilnux_elf entry.o gpio.o time.o vsprintf.o printf.o string.o serial.o lib1funcs.o navilnux.o navilnux_memory.o navilnux_task.o navilnux_msg.o navilnux_sys.o navilnux_lib.o navilnux_clib.o navilnux_user.o navilnux_drv.o drvs.o
 	$(OC) $(OCFLAGS) navilnux_elf navilnux_img
 	$(CC) -c $(CFLAGS) -o serial.o serial.c -D IN_GUMSTIX
-	$(LD) $(LDFLAGS) -o navilnux_gum_elf entry.o gpio.o time.o vsprintf.o printf.o string.o serial.o lib1funcs.o navilnux.o navilnux_memory.o navilnux_task.o navilnux_msg.o navilnux_sys.o navilnux_lib.o navilnux_clib.o navilnux_user.o
+	$(LD) $(LDFLAGS) -o navilnux_gum_elf entry.o gpio.o time.o vsprintf.o printf.o string.o serial.o lib1funcs.o navilnux.o navilnux_memory.o navilnux_task.o navilnux_msg.o navilnux_sys.o navilnux_lib.o navilnux_clib.o navilnux_user.o navilnux_drv.o drvs.o
 	$(OC) $(OCFLAGS) navilnux_gum_elf navilnux_gum_img
 
 clean:

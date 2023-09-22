@@ -10,6 +10,8 @@ typedef struct _navil_free_task{
 	unsigned int context_sp;
 	unsigned int context_lr;
 	unsigned int context_pc;
+
+	unsigned int sleep_end_tick;
 } Navil_free_task;
 
 typedef struct _navil_task_mng{

@@ -12,10 +12,23 @@
 #include <navilnux_lib.h>
 #include <navilnux_sys.h>
 #include <navilnux_msg.h>
+#include <navilnux_drv.h>
 
 #include <navilnux_user.h>
 
 void navilnux_init(void);
 void navilnux_user(void);
+
+#define IRQNUM 64
+#define IRQ0   0
+#define IRQ1   1
+#define IRQ2   2
+#define IRQ3   3
+#define IRQ4   4
+#define IRQ5   5
+#define IRQ6   6
+#define IRQ7   7
+#define IRQ8   8
+#define IRQ63  63
 
 #endif

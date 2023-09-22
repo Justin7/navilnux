@@ -7,8 +7,14 @@
 #define SYS_ITCGET 3
 #define SYS_SEMP 4
 #define SYS_SEMV 5
+#define SYS_MUTEXWAIT 6
+#define SYS_MUTEXREL 7
 #define SYS_MALLOC 8
 #define SYS_FREE 9
+#define SYS_OPEN 10
+#define SYS_CLOSE 11
+#define SYS_READ 12
+#define SYS_WRITE 13
 
 #define SYS_CALLSCHED SYSCALLNUM
 

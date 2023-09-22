@@ -36,6 +36,8 @@ void task_init(void){
 		taskmng.free_task_pool[i].context_sp = 0x00;
 		taskmng.free_task_pool[i].context_lr = 0x00;
 		taskmng.free_task_pool[i].context_pc = 0x00;
+
+		taskmng.free_task_pool[i].sleep_end_tick = 0;
 	}
 
 	taskmng.max_task_id = -1;

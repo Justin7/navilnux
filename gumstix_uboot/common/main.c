@@ -302,7 +302,6 @@ static __inline__ int abortboot(int bootdelay)
 
 void main_loop (void)
 {
-	printf("%s(%d)", __func__, __LINE__);
 //    printf("Now Going To Navilnux Kernel\n");
     /**********************************/
     /* 여기에서 커널이미지로 자동점프 */
@@ -322,7 +321,6 @@ void main_loop (void)
 #if defined(CONFIG_BOOTDELAY) && (CONFIG_BOOTDELAY >= 0)
 	char *s;
 	int bootdelay;
-	printf("%s(%d)", __func__, __LINE__);
 #endif
 #ifdef CONFIG_PREBOOT
 	char *p;
@@ -377,7 +375,6 @@ void main_loop (void)
 #endif /* CONFIG_VERSION_VARIABLE */
 
 #ifdef CFG_HUSH_PARSER
-	printf("%s(%d)", __func__, __LINE__);
 	u_boot_hush_start ();
 #endif
 
@@ -403,7 +400,6 @@ void main_loop (void)
 # endif
 	}
 #endif /* CONFIG_PREBOOT */
-	printf("%s(%d)", __func__, __LINE__);
 
 #if defined(CONFIG_BOOTDELAY) && (CONFIG_BOOTDELAY >= 0)
 	s = getenv ("bootdelay");
@@ -470,7 +466,6 @@ void main_loop (void)
 	 * Main Loop for Monitor Command Processing
 	 */
 #ifdef CFG_HUSH_PARSER
-	printf("%s(%d)", __func__, __LINE__);
 	parse_file_outer();
 	/* This point is never reached */
 	for (;;);
